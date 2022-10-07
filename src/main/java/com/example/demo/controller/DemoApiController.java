@@ -77,7 +77,12 @@ public class DemoApiController {
 	public ResponseEntity<InventoryManagementResponse> uploadItem(@RequestBody InventoryManagementStore request) {
 		try {
 			if(request.getQuantity()<1) {
+				request.setStatus("Empty");
 				request.setAvailable(false);
+			}
+			else {
+				request.setStatus("Available");
+				request.setAvailable(true);
 			}
 			InventoryManagementStore item = inventoryDao.save(request);
 			InventoryManagementResponse response = new InventoryManagementResponse(true, item, null);
@@ -94,7 +99,12 @@ public class DemoApiController {
 	public ResponseEntity<InventoryManagementResponse> updateItem(@RequestBody InventoryManagementStore request) {
 		try {
 			if(request.getQuantity()<1) {
+				request.setStatus("Empty");
 				request.setAvailable(false);
+			}
+			else {
+				request.setStatus("Available");
+				request.setAvailable(true);
 			}
 			InventoryManagementStore item = inventoryDao.save(request);
 			InventoryManagementResponse response = new InventoryManagementResponse(true, item, null);
